@@ -8,7 +8,7 @@ Author: Yuri Astrov
 CREATE TABLE "books" (
     "title" TEXT NOT NULL,
     "author_id" INTEGER,
-    "id" INTEGER PRIMARY KEY NOT NULL
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
 );
 CREATE TABLE "authors" (
     "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE "authors" (
 CREATE TABLE sqlite_sequence(name,seq);
 
 -- For other databases: replace '||' to '+'
-SELECT (authors.name||" "||authors.lastname), t.title, t.num  AS "Count_of_books"
+SELECT (authors.lastname||" "||authors.name), t.title, t.num  AS "Count_of_books"
 FROM
   (SELECT Count(title) AS num,
           author_id,
