@@ -27,3 +27,13 @@ FROM
    GROUP BY author_id) AS t
 JOIN authors ON authors.id=t.author_id
 WHERE t.num>=2;
+
+/*DOUBLE OUTPUT: print for each of books:*/
+SELECT (authors.lastname||" "||authors.name), title, books.id
+FROM books
+LEFT OUTER JOIN authors ON authors.id=books.author_id
+WHERE books.title IN
+    (SELECT title
+     FROM books
+     GROUP BY author_id,
+              title HAVING COUNT(title)>1);
